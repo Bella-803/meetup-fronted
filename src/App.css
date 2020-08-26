@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+#main-section {
+  height: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.meetup-nav {
+  box-shadow: 5px 5px 5px grey;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bg-darkblue{
+  background-color: rgb(12, 12, 34);
+}
+.bg-darkgreen {
+  background-color: rgb(22, 79, 87);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#heading-section {
+ min-height: 80vh;
+ background-image: url("./images/image1.jpg");
+ background-repeat: no-repeat;
+ background-position: top;
+ background-size: cover;
+}
+#heading-section .dark-overlay {
+  position: absolute;
+  top: 10;
+  left: 0;
+  width: 100%;
+  height: 80vh;
+  background-color: rgba(0,0,0, 0.5);
+}
+#mission-section {
+  height: 300px;
+
+}
+#category-section{
+  background-color: lightyellow;
+}
+#category-section .a-category {
+  text-decoration: none;
+}
+
+#dashboard-menu .dashboard-menu-link {
+  text-decoration: none;
   color: white;
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+#dashboard-menu .dashboard-menu-link:hover {
+  background-color: darkgrey;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#dashboard-menu .dashboard-menu-link:active {
+  background-color: darkgrey;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
+
+.nav-sidebar-left{
+  position: fixed;
+  width: 15%;
+  height: 100%;
+  top: 60px;
+  left: 0;
+  overflow: auto;
+  background-color:rgb(12, 12, 34);
+}
+
+.card-category{
+  height: 320px;
+  overflow: auto;
+}
+.card-category:hover{
+  box-shadow: 2px 2px 7px 8px lightgrey;
+}
+.card-signup{
+  box-shadow: 2px 2px 7px 8px lightgrey;
+}
+.card-login{
+  box-shadow: 2px 2px 7px 8px lightgrey;
+}
+.desc-text {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.img-member {
+  width: 100px;
+  height: 100px;
+}
+
+
