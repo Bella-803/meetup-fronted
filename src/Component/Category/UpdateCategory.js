@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCategory, createCategory } from "../../action/categoryActions";
 import classnames from "classnames";
+import defaultImage from "../../images/icon_image.png";
+import {uploadCategoryImage} from "../../action/categoryActions";
 
 class UpdateCategory extends Component {
   constructor() {
@@ -11,11 +13,14 @@ class UpdateCategory extends Component {
       id: "",
       categoryName: "",
       description: "",
+      photoPath: "",
+      selectedFile: "",
       errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeFileHandler = this.onChangeFileHandler.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,11 +29,12 @@ class UpdateCategory extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    const { id, categoryName, description } = nextProps.category;
+    const { id, categoryName, description, photoPath } = nextProps.category;
     this.setState({
       id,
       categoryName,
       description,
+      photoPath,
     });
   }
 
@@ -43,6 +49,13 @@ class UpdateCategory extends Component {
     });
   }
 
+  onChangeFileHandler(e) {
+    e.preventDefault();
+    this.setState({
+      selectedFile: e.target.files[0],
+    })
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -50,55 +63,93 @@ class UpdateCategory extends Component {
       id: this.state.id,
       categoryName: this.state.categoryName,
       description: this.state.description,
+      photoPath: this.state.photoPath,
     };
 
+    const formData = new FormData();
+    formData.append("file", this.state.selectedFile);
+
+    if(this.state.selectedFile !== ""){
+      this.props.uploadCategoryImage(formData, this.state.id);
+    }
+   
     this.props.createCategory(updatedCategory, this.props.history);
+    
   }
 
   render() {
 
     const { errors } = this.state;
+    const {category} = this.props;
+
+    let categoryImage;
+
+    if(category.photoPath == null) {
+       categoryImage = defaultImage;
+    }else {
+      categoryImage = category.photoPath
+    }
 
     return (
-      <div className="container">
-      <div className="row mt-5">
-      <div className="col-md-8 m-auto">
-        <form className="form" onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label for="categoryName">Name</label>
-            <input
-              type="text"
-              className={classnames("form-control", {
-                "is-invalid": errors.categoryName,
-              })}
-              name="categoryName"
-              value={this.state.categoryName}
-              onChange={this.onChange}
-            />
-            {errors.categoryName && (
-              <div className="invalid-feedback">{errors.categoryName}</div>
-            )}
+      <main>
+      <div class="container">
+          <div class="row justify-content-center">
+              
+              <div class="col-lg-7">
+                  <div class="card shadow-lg border-0 rounded-lg mt-5">
+                      <div class="card-header"><h3 class="text-center font-weight-light my-4">Add New Category</h3></div>
+                      
+                      <div class="card-body">
+                      <div class="card-img-top">
+                         <img src= {categoryImage} alt="" width="100" height="100" class="mr-2 mb-3"/>
+                         <input type="file" name="file" onChange={this.onChangeFileHandler}/>
+                      </div>
+                          <form onSubmit={this.onSubmit}>
+                              <div class="form-column">
+                                      <div class="form-group">
+                                          <label class="mb-1" for="categoryName">Category Name</label>
+                                          <input id="categoryName"
+                                                 type="text"
+                                                 placeholder="Enter category name" 
+                                                 className={classnames("form-control form-control-lg py-4", {
+                                                  "is-invalid": errors.categoryName,
+                                                })}
+                                                name="categoryName"
+                                                value={this.state.categoryName}
+                                                onChange={this.onChange}
+                                                 />
+                                                 {errors.categoryName && (
+                                                  <div className="invalid-feedback">
+                                                    {errors.categoryName}
+                                                  </div>
+                                                )}
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="mb-1" for="description">Category Description</label>
+                                          <textarea id="description" 
+                                                    type="text" 
+                                                    placeholder="Enter category description"
+                                                    className={classnames("form-control form-control-lg py-4", {
+                                                      "is-invalid": errors.description,
+                                                     })}
+                                                     name="description"
+                                                     value={this.state.description}
+                                                     onChange={this.onChange}
+                                                 >
+                                                 </textarea>
+                                                 {errors.description && (
+                                                  <div className="invalid-feedback">{errors.description}</div>
+                                                )}
+                                      </div>
+                              </div>
+                             <input class="btn btn-block btn-info" type="submit" value="Save" />
+                          </form>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div className="form-group">
-            <label for="description">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              className={classnames("form-control", {
-                "is-invalid": errors.description,
-              })}
-              value={this.state.description}
-              onChange={this.onChange}
-            ></textarea>
-            {errors.description && (
-              <div className="invalid-feedback"> {errors.description} </div>
-            )}
-          </div>
-          <input type="submit" className="btn btn-primary btn-block" />
-        </form>
-        </div>
-        </div>
       </div>
+  </main>
     );
   }
 }
@@ -106,6 +157,7 @@ class UpdateCategory extends Component {
 UpdateCategory.propTypes = {
   getCategory: PropTypes.func.isRequired,
   createCategory: PropTypes.func.isRequired,
+  uploadCategoryImage: PropTypes.func.isRequired,
   category: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -114,6 +166,6 @@ const mapStateToProps = (state) => ({
   category: state.category.category,
   errors: state.errors,
 });
-export default connect(mapStateToProps, { getCategory, createCategory })(
+export default connect(mapStateToProps, { getCategory, createCategory, uploadCategoryImage })(
   UpdateCategory
 );

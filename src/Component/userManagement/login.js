@@ -11,9 +11,11 @@ class Login extends Component {
       username: "",
       password: "",
       errors: {},
+      passwordShown: false,
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.toggleShowPassword = this.toggleShowPassword.bind(this);
   }
 
   componentDidMount(){
@@ -51,6 +53,12 @@ class Login extends Component {
       [e.target.name] : e.target.value
     })
   }
+
+  toggleShowPassword(){
+    this.setState({
+      passwordShown: !this.state.passwordShown,
+    })
+  }
     render() {
 
       const {errors} = this.state;
@@ -58,7 +66,7 @@ class Login extends Component {
      <section id="loginSection" className="mt-5 pt-5">
       <div className="container">
         <div className="row">
-          <div className="col-md-6 mx-auto">
+          <div className="col-md-5 mx-auto">
             <div className="card bg-light text-center card-form card-login">
               <div className="card-body py-5">
                 <h3>Login</h3>
@@ -87,9 +95,9 @@ class Login extends Component {
                     }
                   </div>
 
-                  <div className="form-group">
+                  <div className="form-group pass-wrapper">
                     <input
-                      type="password"
+                      type={this.state.passwordShown ? "text" : "password"}
                       name="password"
                       className={classnames("form-control form-control-lg", {
                         "is-invalid": errors.password
@@ -98,6 +106,7 @@ class Login extends Component {
                       value={this.state.password}
                       onChange={this.onChange}
                     />
+                    <i className="fa fa-eye" onClick={this.toggleShowPassword} />
                     {
                       errors.password && (
                         <div className="invalid-feedback">
@@ -110,7 +119,7 @@ class Login extends Component {
                   <input
                     type="submit"
                     value="Submit"
-                    className="btn btn-primary btn-block"
+                    className="btn btn-success btn-block"
                   />
                 </form>
               </div>

@@ -4,8 +4,6 @@ import { Provider } from "react-redux";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Component/header/header";
-import AdminDashboard from "./Component/Dashboard/Admin_Dashboard";
-import AdminDashboardCategory from "./Component/Dashboard/Admin_Dashboard_Category";
 import UpdateCategory from "./Component/Category/UpdateCategory";
 import Landing from "./Component/home/landing";
 import AddGroupForm from "./Component/group/addGroupForm";
@@ -18,14 +16,24 @@ import UpdateMeeting from "./Component/Meetup/updateMeeting";
 import GroupItemContentView from "./Component/group/group_item_content_view";
 import Signup from "./Component/userManagement/signup";
 import Login from "./Component/userManagement/login";
-import AdminDashboardUsers from "./Component/Dashboard/Admin_Dashboard_Users";
 import setJWTToken from "./securityUtils/setJWTToken";
 import SecuredRoute from "./securityUtils/secureRoute";
 import jwt_decode from "jwt-decode";
 import {logout} from "./action/securityAction";
 import {SET_CURRENT_USER} from "./action/Types";
 import Home from "./Component/home/home";
-import MainDashboard from "./Component/Dashboard/main-dashboard";
+import MainAdminDashboard from "./Component/Dashboard/main_admin_dashboard";
+import MainAdminDashboardUsers from "./Component/Dashboard/main_admin_dashboard_users";
+import MainAdminDashboardCategory from "./Component/Dashboard/main_admin_dashboard_category";
+import MainAdminDashboardGroups from "./Component/Dashboard/main-admin-dashboard-groups";
+import MainAdminDashboardMeetup from "./Component/Dashboard/main_admin_dashboard_meetup";
+import AddCategoryForm from "./Component/Category/AddCategoryForm";
+import AccessDenied from "./Component/erroPage/accessDenied";
+import MainAdminDashboardProfile from "./Component/Dashboard/main_admin_dashboard_profile";
+import MainAdminDashboardProvince from "./Component/Dashboard/main_admin_dashboard_province";
+import MainAdminDashboardDistrict from "./Component/Dashboard/main_admin_dashboard_district";
+import MainAdminDashboardSector from "./Component/Dashboard/main_admin_dashboard_sector";
+import MainAdminDashboardReport from "./Component/Dashboard/main_admin_dashboard_report";
 
 
 const jwtToken = localStorage.jwtToken;
@@ -67,35 +75,32 @@ function App() {
           <Switch>
 
           <SecuredRoute exact path="/home" component={Home} />
-          <SecuredRoute exact path="/admin" component={AdminDashboard} />
-          <SecuredRoute exact path="/admin-dashboard-users" component={AdminDashboardUsers} />
-          <SecuredRoute
-            exacts
-            path="/adminDashboardCategory"
-            component={AdminDashboardCategory}
-          />
+          <SecuredRoute exact path="/admin" component={MainAdminDashboard} />
+          <SecuredRoute exact path="/admin-dashboard-users" component={MainAdminDashboardUsers} />
+          <SecuredRoute exact path="/admin-dashboard-categories" component={MainAdminDashboardCategory} />
+          <SecuredRoute exact path="/admin-dashboard-groups" component={MainAdminDashboardGroups} />
+          <SecuredRoute exact path="/admin-dashboard-meetups" component={MainAdminDashboardMeetup} />
+          <SecuredRoute exact path="/admin/profile" component={MainAdminDashboardProfile} />
+          <SecuredRoute exact path="/admin/location/province" component={MainAdminDashboardProvince} />
+          <SecuredRoute exact path="/admin/location/district" component={MainAdminDashboardDistrict} />
+          <SecuredRoute exact path="/admin/location/sector" component={MainAdminDashboardSector} />
+          <SecuredRoute exact path="/admin/report" component={MainAdminDashboardReport} />
+
+          <SecuredRoute exact path="/add-category" component={AddCategoryForm} />
           <SecuredRoute exact path="/updateCategory/:id" component={UpdateCategory} />
-         
-          <SecuredRoute
-            exact
-            path="/showcategoryitem/:catId"
-            component={CategoryItemUserView}
-          />
+          <SecuredRoute exact path="/showcategoryitem/:catId" component={CategoryItemUserView} />
+
           <SecuredRoute exact path="/addGroup/:catId" component={AddGroupForm} />
           <SecuredRoute exact path="/updateGroup/:catId/:groupId" component={UpdateGroupForm} />
-          <SecuredRoute
-            exact
-            path="/groupadmindashboard/:catId"
-            component={GroupAdminDashboard}
-          />
-          <SecuredRoute
-            exact
-            path="/groupadminexploredetails/:catId/:groupId"
-            component={GroupAdminExploreDetails}
-          />
+
+          <SecuredRoute exact path="/groupadmindashboard/:groupId/:catId" component={GroupAdminDashboard} />
+          <SecuredRoute exact path="/groupadminexploredetails/:catId/:groupId" component={GroupAdminExploreDetails} />
+          
          <SecuredRoute exact path="/updatemeeting/:groupId/:meetupId" component={UpdateMeeting} />
          <SecuredRoute exact path="/members/:categoryId/:groupId" component={Members} />
          <SecuredRoute exact path="/groupitemcontentuserview/:groupId" component={GroupItemContentView}/>
+
+         <SecuredRoute exact path="/access-denied" component={AccessDenied} />
 
          </Switch>
         </div>

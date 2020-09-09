@@ -35,7 +35,7 @@ class GroupAdminExploreDetails extends Component {
                 <table class="table table-striped">
                   <thead class="thead-dark">
                     <tr>
-                      <th>#</th>
+                      <th>Image</th>
                       <th>Meeting Title</th>
                       <th>Description</th>
                       <th>Date & Time</th>

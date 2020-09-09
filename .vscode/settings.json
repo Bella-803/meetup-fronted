@@ -1,0 +1,19 @@
+{
+    "eslint.format.enable": true,
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+        "vue",
+        "markdown",
+        "css",
+        "react"
+    ],
+    "eslint.quiet": true,
+    "eslint.run": "onSave",
+    "eslint.validate": [
+    
+    ]
+}

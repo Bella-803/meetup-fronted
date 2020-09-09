@@ -3,21 +3,29 @@
 }
 
 .meetup-nav {
-  box-shadow: 5px 5px 5px grey;
+  /* box-shadow: 5px 5px 5px green; */
+  border-bottom: 3px solid green;
 }
 
 .bg-darkblue{
   background-color: rgb(12, 12, 34);
 }
 .bg-darkgreen {
-  background-color: rgb(22, 79, 87);
+  background-color: rgb(42, 143, 87);
 }
+.bg-green{
+  background-color: rgb(45, 165, 121);
+}
+.text-green{
+  color: rgb(66, 194, 155);
+}
+
 
 #heading-section {
  min-height: 80vh;
  background-image: url("./images/image1.jpg");
  background-repeat: no-repeat;
- background-position: top;
+ background-position: center;
  background-size: cover;
 }
 #heading-section .dark-overlay {
@@ -28,6 +36,15 @@
   height: 80vh;
   background-color: rgba(0,0,0, 0.5);
 }
+
+#home-heading-section {
+  min-height: 80vh;
+  background: linear-gradient(to bottom right, rgb(94, 94, 192) 0%, rgb(27, 141, 27) 80%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+ }
+
 #mission-section {
   height: 300px;
 
@@ -90,5 +107,30 @@
   width: 100px;
   height: 100px;
 }
+.service-img {
+  border: 1px solid white;
+  border-radius: 200%;
+}
 
+.group-breadcrumb-link {
+  color: rgb(10, 119, 59);
+}
+.group-breadcrumb-link:hover {
+  text-decoration : none;
+  color: rgb(12, 12, 34);
+}
 
+#contact-section {
+  height: 60vh;
+  background-color:  rgb(247, 255, 252);
+}
+.pass-wrapper {
+  position: relative;
+  display: flex;
+
+}
+.pass-wrapper i {
+  position: absolute;
+  top: 38%;
+  right: 6%;
+}

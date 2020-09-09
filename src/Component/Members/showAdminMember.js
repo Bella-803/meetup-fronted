@@ -5,7 +5,7 @@ class ShowAdminMember extends Component {
         const {member} = this.props;
         return (
             <tr>
-              <td>1</td>
+              <td>#</td>
               <td>{member.fullname}</td>
               <td>{member.email}</td>
                <td>

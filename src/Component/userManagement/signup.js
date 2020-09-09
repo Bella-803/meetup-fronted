@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {signup} from "../../action/securityAction";
+import {signup} from "../../action/userAction";
 import classnames from "classnames";
 
 class Signup extends Component {
@@ -14,10 +14,12 @@ class Signup extends Component {
       username: "",
       password: "",
       confirmPassword: "",
+      passwordShown: false,
       errors: {},
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.toggleShowPassword = this.toggleShowPassword.bind(this);
   }
 
   componentDidMount(){
@@ -46,8 +48,18 @@ class Signup extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     }
-     this.props.signup(newUser,this.props.history);
+
+    this.props.signup(newUser, this.props.history);
+     
   }
+
+  toggleShowPassword(){
+    this.setState({
+      passwordShown: !this.state.passwordShown,
+    })
+  }
+
+
     render() {
       const {errors} = this.state
     return (
@@ -123,9 +135,9 @@ class Signup extends Component {
                     }
                   </div>
 
-                  <div className="form-group">
+                  <div className="form-group pass-wrapper">
                     <input
-                      type="password"
+                      type={this.state.passwordShown ? "text" : "password"}
                       name="password"
                       className={classnames("form-control form-control-lg", {
                         "is-invalid": errors.password
@@ -134,6 +146,7 @@ class Signup extends Component {
                       value={this.state.password}
                       onChange={this.onChange}
                     />
+                    <i className="fa fa-eye" onClick={this.toggleShowPassword}/>
                     {
                       errors.password && (
                         <div className="invalid-feedback">
@@ -141,17 +154,21 @@ class Signup extends Component {
                         </div>
                       )
                     }
+
                   </div>
 
-                  <div className="form-group">
+                  <div className="form-group pass-wrapper">
                     <input
-                      type="password"
+                      type={this.state.passwordShown ? "text" : "password"}
                       name="confirmPassword"
                       className={classnames("form-control form-control-lg", {
                         "is-invalid": errors.confirmPassword
                       })}
                       placeholder="Confirm Password"
+                      value={this.state.confirmPassword}
+                      onChange={this.onChange}
                     />
+                    <i className="fa fa-eye" onClick={this.toggleShowPassword}/>
                     {
                       errors.confirmPassword && (
                         <div className="invalid-feedback">

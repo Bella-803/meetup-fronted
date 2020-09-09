@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {getMeetup, updateMeetup} from "../../action/meetupAction";
 import classnames from "classnames";
+import {uploadMeetupImage} from "../../action/meetupAction";
+import defaultImage from "../../images/icon_image.png"
 
 class UpdateMeeting extends Component {
     constructor(){
@@ -13,11 +15,14 @@ class UpdateMeeting extends Component {
          description: "",
          location: "",
          dateAndTime: "",
+         photoPath: "",
+         selectedFile: "",
          errors: {},
         }
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeFileHandler = this.onChangeFileHandler.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -26,13 +31,14 @@ class UpdateMeeting extends Component {
             this.setState({errors: nextProps.errors})
         }
 
-        const { id, meetingTitle, description, location, dateAndTime }  = nextProps.meetup;
+        const { id, meetingTitle, description, location, dateAndTime, photoPath }  = nextProps.meetup;
         this.setState({
             id,
             meetingTitle,
             description,
             location,
             dateAndTime,
+            photoPath,
         })
     }
     componentDidMount(){
@@ -54,22 +60,49 @@ class UpdateMeeting extends Component {
             description: this.state.description,
             location: this.state.location,
             dateAndTime: myDateandTime,
+            photoPath: this.state.photoPath,
+         }
+
+         const formData = new FormData();
+         formData.append("file", this.state.selectedFile);
+
+         if(this.state.selectedFile !== ""){
+            this.props.uploadMeetupImage(this.state.id, formData);
          }
        
          this.props.updateMeetup(updatedMeetup, groupId, catId,this.props.history);
     }
 
+    onChangeFileHandler(e) {
+      e.preventDefault();
+      this.setState({
+        selectedFile: e.target.files[0],
+      })
+    }
+
     render() {
 
       const {errors} = this.props;
+      const {meetup} = this.props;
+
+      let meetupImage;
+      if(meetup.photoPath == null){
+        meetupImage = defaultImage;
+      }else {
+        meetupImage = meetup.photoPath;
+      }
+
         return (
-            <main id="main-section">
+          <main id="main-section">
             <div className="meetup_group">
               <div className="container">
                 <div className="row">
                   <div className="col-md-8 m-auto">
                     <h5 className="display-4 text-center">Create Edit Group form</h5>
                     <hr />
+                     <img src={meetupImage} alt="" className="mr-3 mb-3" width="100" height="100"/>
+                     <input type="file" name="file" onChange={this.onChangeFileHandler}/>
+
                     <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                       <label for="meetingTitle">Meeting Title</label>
@@ -147,6 +180,7 @@ class UpdateMeeting extends Component {
 UpdateMeeting.propTypes = {
     getMeetup: PropTypes.func.isRequired,
     updateMeetup:PropTypes.func.isRequired,
+    uploadMeetupImage:PropTypes.func.isRequired,
     meetup: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 }
@@ -154,4 +188,4 @@ const mapStateToProps = state => ({
     meetup: state.meetup.meetup,
     errors: state.errors,
 })
-export default connect(mapStateToProps,{getMeetup, updateMeetup})(UpdateMeeting);
+export default connect(mapStateToProps,{getMeetup, updateMeetup, uploadMeetupImage})(UpdateMeeting);

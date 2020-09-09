@@ -16,6 +16,7 @@ class AddMeeting extends Component {
       dateAndTime: "",
       errors: {},
       show: false,
+      msg:"",
     };
 
     this.onChange = this.onChange.bind(this);
@@ -54,6 +55,7 @@ class AddMeeting extends Component {
       catId,
       this.props.history
     );
+    this.setState({ msg : "Meetup successfully scheduled"})
     // this.handleClose();
   }
 
@@ -68,10 +70,17 @@ class AddMeeting extends Component {
 
   render() {
     const { errors } = this.state;
+    let showMsg;
+
+    if(this.state.msg === ""){
+      showMsg = "";
+    }else {
+      showMsg = <div className="alert alert-success">{this.state.msg}</div>
+    }
     return (
       <div>
         <React.Fragment>
-          <Button variant="primary" onClick={this.handleShow}>
+          <Button variant="success" onClick={this.handleShow}>
             <i className="fas fa-plus-circle"> New Meeting</i>
           </Button>
 
@@ -81,7 +90,9 @@ class AddMeeting extends Component {
             show={this.state.show}
             onHide={this.handleClose}
           >
-            <Modal.Header closeButton className="bg-primary">
+
+          {showMsg}
+            <Modal.Header closeButton className="bg-success">
               <Modal.Title> Add new Meeting </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -152,7 +163,7 @@ class AddMeeting extends Component {
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <button className="btn btn-info" onClick={this.onSubmit}>
+              <button className="btn btn-success" onClick={this.onSubmit}>
                 Save
               </button>
               <button className="btn btn-danger" onClick={this.handleClose}>

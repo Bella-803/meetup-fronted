@@ -24,5 +24,5 @@ if (window.navigator.userAgent.includes("Chrome") && ReactReduxDevTools) {
     compose(applyMiddleware(...middleware))
   );
 }
-
+ 
 export default store;

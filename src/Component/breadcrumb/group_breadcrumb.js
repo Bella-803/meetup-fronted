@@ -21,7 +21,7 @@ componentDidMount(){
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <Link
-            to={`/groupadmindashboard/${categoryId}`}
+            to={`/groupadmindashboard/${groupId}/${categoryId}`}
             class="group-breadcrumb-link"
           >
             <h4>{group.groupName}</h4>

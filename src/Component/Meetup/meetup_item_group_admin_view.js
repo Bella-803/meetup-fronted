@@ -14,7 +14,9 @@ class MeetupItemGroupAdminView extends Component {
     
     return (
       <tr>
-        <td>1</td>
+        <td>
+          <img src={meetup.photoPath} alt="meetup-profile" className="rounded-circle" width="75" height="75"/>
+        </td>
         <td>{meetup.meetingTitle}</td>
         <td>
           <p>
@@ -23,7 +25,7 @@ class MeetupItemGroupAdminView extends Component {
         </td>
         <td>{meetup.dateAndTime}</td>
         <td>{meetup.location}</td>
-        <td>10</td>
+        <td>{meetup.numberOfAttendees}</td>
         <td>
           <Link to={`/updatemeeting/${meetup.meetupGroup.id}/${meetup.id}`} class="btn text-warning">
             <i class="fas fa-pen"> Edit</i>
