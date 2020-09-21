@@ -65,12 +65,16 @@ class UpdateGroupForm extends Component {
   render() {
     const { categoryName } = this.props.category;
     const {errors} = this.props;
-
+    const groupId = this.state.id;
+    const { catId } = this.props.match.params
 
     return (
       <main>
       <div class="container">
           <div class="row justify-content-center">
+             <div>
+                <Link to={`/groupadmindashboard/${groupId}/${catId}`}>Back to Dashboard</Link>
+            </div>
               <div class="col-lg-7">
                   <div class="card shadow-lg border-0 rounded-lg mt-5">
                       <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Meetup Group</h3></div>

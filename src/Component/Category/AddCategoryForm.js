@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createCategory } from "../../action/categoryActions";
 import classnames from "classnames";
+import { Link } from 'react-router-dom';
 
 class AddCategoryForm extends Component {
     constructor() {
@@ -44,9 +45,18 @@ class AddCategoryForm extends Component {
         return (
           <main>
             <div class="container">
+              
                 <div class="row justify-content-center">
+
+                  <div className="col-lg-10">
+                    <ol className="breadcrumb mt-3">
+                      <li>
+                          <Link> Dashboard </Link>
+                      </li>
+                    </ol>
+                  </div>
                     <div class="col-lg-7">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-2">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Add New Category</h3></div>
                             <div class="card-body">
                                 <form onSubmit={this.onSubmit}>

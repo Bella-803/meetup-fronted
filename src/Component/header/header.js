@@ -9,6 +9,9 @@ import {getAllCreatedGroup} from "../../action/userAction";
 
 class Header extends Component {
 
+  componentDidUpdate(){
+    this.props.getAllCreatedGroup();
+  }
 
   logout(){
     this.props.logout();
@@ -17,40 +20,42 @@ class Header extends Component {
 
   render() {
 
-     const {ownedGroups} = this.props.user;
+      const {ownedGroups} = this.props.user;
 
-    const groupLinks = ownedGroups.map(group => (
-      <Link class="dropdown-item" to={`/groupadmindashboard/${group.id}/${group.category.id}`}> {group.groupName}</Link>
+      const groupLinks = ownedGroups.map(group => (
+      <Link className="dropdown-item" to={`/groupadmindashboard/${group.id}/${group.category.id}`}> {group.groupName}</Link>
     ))
+  
+     
 
     const {validToken, user} = this.props.security;
    
     const userIsAuthenticated = (
 
-      <nav class="navbar navbar-expand-sm navbar-light bg-white meetup-nav">
-      <div class="container">
-        <Link to="/" class="navbar-brand">
+      <nav className="navbar navbar-expand-sm navbar-light bg-white meetup-nav">
+      <div className="container">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="logo" width="60" height="60"/>
         </Link>
 
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           data-toggle="collapse"
           data-target="#navbarCollapse"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         
-        <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <Link to="/home" class="nav-link">
-              <i class="fas fa-user-circle mr-1">{user.fullname}</i>
+        <div id="navbarCollapse" className="collapse navbar-collapse">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/home" className="nav-link">
+              <i className="fas fa-user-circle mr-1">{user.fullname}</i>
             </Link>
           </li>
   
-          <li class="nav-item">
-            <Link to="/login" class="nav-link" onClick={this.logout.bind(this)}>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link" onClick={this.logout.bind(this)}>
               Logout
             </Link>
           </li>
@@ -65,38 +70,40 @@ class Header extends Component {
     );
 
     const userIsGroupAdmin = (
-      <nav class="navbar navbar-expand-sm navbar-light bg-white meetup-nav">
-      <div class="container">
-        <Link to="/" class="navbar-brand">
+      <nav className="navbar navbar-expand-sm navbar-light bg-white meetup-nav">
+      <div className="container">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="logo" width="60" height="60"/>
         </Link>
 
         <button
-          class="navbar-toggler bg-black"
+          className="navbar-toggler bg-black"
           data-toggle="collapse"
           data-target="#navbarCollapse"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         
-        <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <Link to="/home" class="nav-link">
-              <i class="fas fa-user-circle mr-1">{user.fullname}</i>
+        <div id="navbarCollapse" className="collapse navbar-collapse">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/home" className="nav-link">
+              <i className="fas fa-user-circle mr-1">{user.fullname}</i>
             </Link>
           </li>
 
-            <li class="nav-item dropdown mr-0">
-             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups Created</a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-               {groupLinks} 
+            <li className="nav-item dropdown mr-0">
+             <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups Created</a>
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+               {
+                 groupLinks
+                } 
            </div>
 
            </li>
 
-           <li class="nav-item">
-            <Link to="/login" class="nav-link" onClick={this.logout.bind(this)}>
+           <li className="nav-item">
+            <Link to="/login" className="nav-link" onClick={this.logout.bind(this)}>
               Logout
             </Link>
           </li>
@@ -114,30 +121,30 @@ class Header extends Component {
 
     const userIsNotAuthenticated = (
    
-      <nav class="navbar navbar-expand-sm navbar-light bg-white meetup-nav">
-      <div class="container">
-        <Link to="/" class="navbar-brand">
+      <nav className="navbar navbar-expand-sm navbar-light bg-white meetup-nav">
+      <div className="container">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="logo" width="60" height="60"/>
         </Link>
 
         <button
-          class="navbar-toggler bg-black"
+          className="navbar-toggler bg-black"
           data-toggle="collapse"
           data-target="#navbarCollapse"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
+        <div id="navbarCollapse" className="collapse navbar-collapse">
+        <ul className="navbar-nav ml-auto">
         
-          <li class="nav-item">
-            <Link to="/login" class="nav-link">
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
               Log in
             </Link>
           </li>
   
-          <li class="nav-item">
-            <Link to="/signup" class="nav-link">
+          <li className="nav-item">
+            <Link to="/signup" className="nav-link">
               Sign up
             </Link>
           </li>
@@ -157,7 +164,7 @@ class Header extends Component {
       if(user.role === 'ADMIN'){
         headerLinks = userIsAdmin;
       } else if(user.role === "GROUP_ADMIN"){
-        {this.props.getAllCreatedGroup()}
+        // {this.props.getAllCreatedGroup()}
         headerLinks = userIsGroupAdmin;
       }
       else {
@@ -186,5 +193,6 @@ Header.propTypes = {
 const mapStateToProps = state => ({
   security: state.security,
   user : state.user,
+  getAllCreatedGroup,
 })
 export default connect(mapStateToProps, {logout, getAllCreatedGroup})(Header);

@@ -98,7 +98,7 @@ class UpdateMeeting extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-md-8 m-auto">
-                    <h5 className="display-4 text-center">Create Edit Group form</h5>
+                    <h5 className="display-4 text-center">Edit Meetup Information</h5>
                     <hr />
                      <img src={meetupImage} alt="" className="mr-3 mb-3" width="100" height="100"/>
                      <input type="file" name="file" onChange={this.onChangeFileHandler}/>

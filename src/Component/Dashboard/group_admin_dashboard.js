@@ -1,21 +1,19 @@
 import React, { Component } from "react";
-import image1 from "../../images/image3.jpg";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getGroup } from "../../action/groupAction";
+import { getGroup, getGroupAdminsGroup } from "../../action/groupAction";
 import { getCategory } from "../../action/categoryActions";
 import GroupItemsAdminView from "../group/group_items_admin_view";
 
 class GroupAdminDashboard extends Component {
 
   componentDidMount(){
-    console.log("Inside compoenent did mount");
-
     const { catId } = this.props.match.params;
     const {groupId} = this.props.match.params;
     this.props.getCategory(catId, this.props.history);
-    this.props.getGroup(groupId);
+    // this.props.getGroup(groupId);
+    this.props.getGroupAdminsGroup(groupId);
   }
 
   render() {
@@ -47,6 +45,7 @@ class GroupAdminDashboard extends Component {
 GroupAdminDashboard.propType = {
   getCategory: PropTypes.func.isRequired,
   getGroup: PropTypes.func.isRequired,
+  getGroupAdminsGroup: PropTypes.func.isRequired,
   category: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired,
 };
@@ -54,6 +53,6 @@ const mapStateToProps = (state) => ({
   category: state.category.category,
   group: state.group.group,
 });
-export default connect(mapStateToProps, { getGroup, getCategory })(
+export default connect(mapStateToProps, { getGroup,getGroupAdminsGroup, getCategory })(
   GroupAdminDashboard
 );

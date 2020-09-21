@@ -44,7 +44,6 @@ export const getUsersGroup = () => async dispatch => {
 
 export const getAllCreatedGroup = () => async dispatch => {
     const res = await axios.get('http://localhost:8080/api/users/ownedGroup');
-    console.log(res.data)
     dispatch({
         type: GET_CREATED_GROUP,
         payload: res.data
@@ -65,7 +64,6 @@ export const deleteUser = (userId) => async dispatch => {
 
 export const uploadUserProfile = (uploadedFile) => async dispatch => {
     try {
-        console.log("Hello World");
         const res = await axios.post('http://localhost:8080/api/users/upload/profile', uploadedFile);
     } catch (error) {
         dispatch({

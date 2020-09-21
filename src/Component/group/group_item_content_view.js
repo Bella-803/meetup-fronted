@@ -132,7 +132,7 @@ class GroupItemContentView extends Component {
                         </div>
                         <div className="col-lg-8 col-md-7 pl-5">
                             <h3 className="h3">{group.groupName}</h3>
-                            <p>Rwanda - {group.location}</p>
+                            <p><i className="fas fa-map-marker-alt"></i> Rwanda - {group.location}</p>
                             <p>{group.numberOfMembers} Members</p>
                             <h5 className="text-muted">{group.groupAdminName}<span className="font-italic">(Group Admin)</span></h5>
                         </div>

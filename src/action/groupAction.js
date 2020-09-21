@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, GET_GROUPS, DELETE_GROUP, GET_GROUP, GET_MEMBERS, NUMBER_GROUPS } from "./Types";
+import { GET_ERRORS, GET_GROUPS, DELETE_GROUP, GET_GROUP, GET_MEMBERS, NUMBER_GROUPS, DELETE_USER } from "./Types";
 
 export const createGroup = (meetupGroup, catId,sectorId, history) => async (
   dispatch
@@ -33,8 +33,15 @@ export const getAllGroups = () => async dispatch => {
 }
 
 export const getGroup = (groupId) => async (dispatch) => {
-  console.log("inside get group");
   const res = await axios.get(`http://localhost:8080/api/groups/${groupId}`);
+  dispatch({
+    type: GET_GROUP,
+    payload: res.data,
+  });
+};
+
+export const getGroupAdminsGroup = (groupId) => async (dispatch) => {
+  const res = await axios.get(`http://localhost:8080/api/groups/groupAdmin/${groupId}`);
   dispatch({
     type: GET_GROUP,
     payload: res.data,
@@ -56,7 +63,7 @@ export const deleteGroup = (groupId) => async (dispatch) => {
 export const updateGroup = (meetupGroup, catId, history) => async (dispatch) => {
   try {
     await axios.patch(`http://localhost:8080/api/groups/${catId}`, meetupGroup);
-    history.push(`/groupadmindashboard/${catId}/${meetupGroup.id}`);
+    history.push(`/groupadmindashboard/${meetupGroup.id}/${catId}`);
   } catch (error) {
     dispatch({
       type: GET_ERRORS,
@@ -98,6 +105,21 @@ export const uploadGroupImage = (groupId, uploadedImage) => async dispatch => {
       payload: error.response.data
     })
   }
+}
+
+export const removeMember = (groupId, userId) => async dispatch => {
+  
+  if(window.confirm("Are you sure you want to remove this member from your group ?")){
+
+    await axios.patch(`http://localhost:8080/api/groups/remove/${groupId}/${userId}`);
+
+     dispatch({
+       type: DELETE_USER,
+       payload: userId,
+     })
+     
+  }
+   
 }
 
 export const getNumberOfGroups = () => async dispatch => {

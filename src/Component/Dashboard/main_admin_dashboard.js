@@ -111,7 +111,7 @@ class MainAdminDashboard extends Component {
                      </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
+                        <div class="small">Logged in as: {this.props.security.user.fullname}</div>
                         Meetup System
                     </div>
                 </nav>

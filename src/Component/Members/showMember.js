@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import image1 from "../../images/image3.jpg";
 import "../../App.css";
 import defaultImage from "../../images/default_image.jpg";
 

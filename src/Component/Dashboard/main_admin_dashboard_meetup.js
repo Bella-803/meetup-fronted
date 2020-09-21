@@ -94,23 +94,23 @@ import {logout} from "../../action/securityAction";
                     </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
                     <a class="nav-link collapsed" href="/admin-dashboard-categories">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>
                         Category
                        
                     </a>
                    
                     <a class="nav-link collapsed" href="/admin-dashboard-users" >
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                         Users
                       
                     </a>
                   
                     <a class="nav-link" href="/admin-dashboard-groups">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                         Meetup Groups
                     </a>
                     <a class="nav-link active" href="/admin-dashboard-meetups">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-share-alt"></i></div>
                         Meetups
                     </a>
 

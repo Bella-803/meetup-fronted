@@ -47,13 +47,14 @@ class Home extends Component {
         filteredCategories : newCategs,
       })
     }
+
     showAlert(){
       window.alert("Please Select Category First");
     }
 
     render() {
         const {categories} = this.props.category;
-        const {groups} = this.props.group;
+       const {groups} = this.props.group;
 
         let groupContent;
         const groupAlgorithm = (groups) => {

@@ -34,6 +34,7 @@ import MainAdminDashboardProvince from "./Component/Dashboard/main_admin_dashboa
 import MainAdminDashboardDistrict from "./Component/Dashboard/main_admin_dashboard_district";
 import MainAdminDashboardSector from "./Component/Dashboard/main_admin_dashboard_sector";
 import MainAdminDashboardReport from "./Component/Dashboard/main_admin_dashboard_report";
+import AddMeetingForm from "./Component/Meetup/addMeetingForm";
 
 
 const jwtToken = localStorage.jwtToken;
@@ -67,7 +68,6 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login}/>
-
           {
             //Private Route
           }
@@ -96,6 +96,7 @@ function App() {
           <SecuredRoute exact path="/groupadmindashboard/:groupId/:catId" component={GroupAdminDashboard} />
           <SecuredRoute exact path="/groupadminexploredetails/:catId/:groupId" component={GroupAdminExploreDetails} />
           
+         <SecuredRoute exact path="/addmeeting/:groupId/:catId" component={AddMeetingForm} />
          <SecuredRoute exact path="/updatemeeting/:groupId/:meetupId" component={UpdateMeeting} />
          <SecuredRoute exact path="/members/:categoryId/:groupId" component={Members} />
          <SecuredRoute exact path="/groupitemcontentuserview/:groupId" component={GroupItemContentView}/>

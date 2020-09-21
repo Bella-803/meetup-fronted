@@ -5,6 +5,7 @@ import { getCategory } from "../../action/categoryActions";
 import { createGroup } from "../../action/groupAction";
 import {getSectors} from "../../action/sectorAction";
 import classnames from "classnames";
+import {Link} from "react-router-dom";
 
 class AddGroupForm extends Component {
   constructor() {
@@ -54,6 +55,7 @@ class AddGroupForm extends Component {
 
   render() {
     const { categoryName } = this.props.category;
+    const catId = this.props.match.params.catId;
     const {sectors} = this.props.sector;
     const {errors} = this.props;
 
@@ -67,7 +69,11 @@ class AddGroupForm extends Component {
       <div class="container">
           <div class="row justify-content-center">
               <div class="col-lg-7">
-                  <div class="card shadow-lg border-0 rounded-lg mt-5">
+                 <div className="mt-3">
+                   <Link to={`/showcategoryitem/${catId}`}> <i className="fa fa-arrow-left"></i> Back</Link>
+
+                 </div>
+                  <div class="card shadow-lg border-0 rounded-lg mt-3">
                       <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Meetup Group</h3></div>
                       <div class="card-body">
                           <form onSubmit={this.onSubmit}>

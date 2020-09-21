@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getMeetups } from "../../action/meetupAction";
 import MeetupItemGroupAdminView from "../Meetup/meetup_item_group_admin_view";
+import { Link } from "react-router-dom";
 
 
 class GroupAdminExploreDetails extends Component {
@@ -16,6 +17,7 @@ class GroupAdminExploreDetails extends Component {
   render() {
     const { meetups } = this.props.meetup;
     const { catId } = this.props.match.params;
+    const {groupId} = this.props.match.params;
     return (
       <div class="group">
         <div class="container">
@@ -23,14 +25,19 @@ class GroupAdminExploreDetails extends Component {
             <div class="col-md-12">
               <br />
               <GroupBreadcrumb
-                groupId={this.props.match.params.groupId}
+                groupId={groupId}
                 categoryId={catId}
               />
               <hr />
               <br />
 
               <div class="container">
-                <AddMeeting history={this.props.history} match={this.props.match} />
+               {
+                 // <AddMeeting history={this.props.history} match={this.props.match} />
+                }
+                <Link to={`/addmeeting/${groupId}/${catId}`} variant="success">
+                    <i className="fas fa-plus-circle"> New Meeting</i>
+                </Link>
                 <br />
                 <table class="table table-striped">
                   <thead class="thead-dark">

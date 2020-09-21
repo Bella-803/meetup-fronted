@@ -5,16 +5,26 @@ import {getMembers} from "../../action/groupAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import ShowAdminMember from "./showAdminMember";
+import ShowMember from "./showMember";
 
 class Members extends Component {
+  
   componentDidMount() {
     const { groupId } = this.props.match.params;
     this.props.getMembers(groupId);
+  }
+  
+  memberProp = (groupId, member) => {
+    return {
+        groupId,
+        member,
+       }
   }
   render() {
     const {members} = this.props.member;
     const {groupId} = this.props.match.params;
     const {categoryId} = this.props.match.params;
+    
 
     return (
       <div class="group">
@@ -38,8 +48,10 @@ class Members extends Component {
                   </thead>
                   <tbody>
                     {
+
                       members.map(member => (
-                        <ShowAdminMember key={member.id} member={member} />
+                        <ShowAdminMember key={member.id} member={[groupId, member]} />
+                        // <ShowAdminMember key={member.id} member={member} />
                       ))
 
                     }
