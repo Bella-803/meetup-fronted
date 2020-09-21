@@ -136,7 +136,7 @@ class MainAdminDashboardProfile extends Component {
             
             <div id="layoutSidenav_content">
                        
-            <section id="profile">
+        <section id="profile">
             <div class="container">
               <div class="row">
                 <div class="col-md-9 mt-5">

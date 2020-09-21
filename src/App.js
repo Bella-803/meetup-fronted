@@ -35,6 +35,7 @@ import MainAdminDashboardDistrict from "./Component/Dashboard/main_admin_dashboa
 import MainAdminDashboardSector from "./Component/Dashboard/main_admin_dashboard_sector";
 import MainAdminDashboardReport from "./Component/Dashboard/main_admin_dashboard_report";
 import AddMeetingForm from "./Component/Meetup/addMeetingForm";
+import UserProfile from "./Component/userManagement/userProfile";
 
 
 const jwtToken = localStorage.jwtToken;
@@ -75,6 +76,7 @@ function App() {
           <Switch>
 
           <SecuredRoute exact path="/home" component={Home} />
+          <SecuredRoute exact path="/user/profile" component={UserProfile} />
           <SecuredRoute exact path="/admin" component={MainAdminDashboard} />
           <SecuredRoute exact path="/admin-dashboard-users" component={MainAdminDashboardUsers} />
           <SecuredRoute exact path="/admin-dashboard-categories" component={MainAdminDashboardCategory} />

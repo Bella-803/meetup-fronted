@@ -57,10 +57,12 @@ class Header extends Component {
             </Link>
           </li>
   
-          <li className="nav-item">
-            <Link to="/login" className="nav-link" onClick={this.logout.bind(this)}>
-              Logout
-            </Link>
+          <li className="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i>Account</a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <Link class="dropdown-item" to="/user/profile">Your Account</Link>
+                <Link class="dropdown-item" to="/logout" onClick={this.logout.bind(this)}>Logout</Link>
+             </div>
           </li>
   
         </ul>
@@ -105,10 +107,12 @@ class Header extends Component {
 
            </li>
 
-           <li className="nav-item">
-            <Link to="/login" className="nav-link" onClick={this.logout.bind(this)}>
-              Logout
-            </Link>
+           <li className="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i>Account</a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <Link class="dropdown-item" to="/user/profile">Your Account</Link>
+                <Link class="dropdown-item" to="/logout" onClick={this.logout.bind(this)}>Logout</Link>
+             </div>
           </li>
   
         </ul>

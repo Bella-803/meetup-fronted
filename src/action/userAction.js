@@ -64,7 +64,7 @@ export const deleteUser = (userId) => async dispatch => {
 
 export const uploadUserProfile = (uploadedFile) => async dispatch => {
     try {
-        const res = await axios.post('http://localhost:8080/api/users/upload/profile', uploadedFile);
+        await axios.post('http://localhost:8080/api/users/upload/profile', uploadedFile);
     } catch (error) {
         dispatch({
             type:GET_ERRORS,
