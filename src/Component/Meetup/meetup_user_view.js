@@ -20,15 +20,24 @@ class MeetupUserView extends Component {
 
     render () {
         const {meetup} = this.props;
-        let location = meetup.location
-        let isNotLink = "";
-        let isLink = "";
+        let location = meetup.location;
+        let locationInfo;
+        let attendMeetupBtn ;
+        let showAttendance = "";
         
         if(location.startsWith('https')){
-          isLink = <a href={meetup.location} target="_blank">Click to Join Meetup Online</a>
+          locationInfo = ", Online Meetup"
+          attendMeetupBtn = <a href={meetup.location} target="_blank">Click to Join Meetup Online</a>
         }
         else {
-          isNotLink = ',' + meetup.location;
+          showAttendance =  <p className="lead text-danger mt-3">
+                                 Attended by {meetup.numberOfAttendees}
+                             </p>
+          locationInfo = ',' + meetup.location;
+          attendMeetupBtn =  <div>
+                                 <Link onClick={this.attendMeet.bind(this, meetup.id)}> <i className="fa fa-plus-circle fa-2x text-primary mr-3"></i></Link>
+                                  <Link onClick={this.cancelYourMeetup.bind(this, meetup.id)}> <i className="fa fa-times fa-2x text-danger"></i></Link>
+                             </div>
         }
 
         let meetupImage;
@@ -44,21 +53,18 @@ class MeetupUserView extends Component {
             <div className="card-body">
               <div className="row">
                 <div className="col-8">
-                   <h5 className="card-title">{meetup.dateAndTime} {isNotLink}</h5>
+                   <h5 className="card-title">{meetup.dateAndTime} <strong>{locationInfo}</strong></h5>
                    <h3>{meetup.meetingTitle}</h3>
                    <p className="lead">{meetup.description}</p>
-       
-                     <Link onClick={this.attendMeet.bind(this, meetup.id)}> <i className="fa fa-plus-circle fa-2x text-primary mr-3"></i></Link>
-                     <Link onClick={this.cancelYourMeetup.bind(this, meetup.id)}> <i className="fa fa-times fa-2x text-danger"></i></Link>
                      
                      <p className="lead mt-2 mb-2">
-                        {isLink}
+                         {attendMeetupBtn}
                      </p>
 
-                     <p className="lead text-danger mt-3">
-                         Attended by {meetup.numberOfAttendees}
-                    </p>
+                    {showAttendance}
+
                 </div>
+
                 <div className="col-4">
                   <img src={meetupImage} alt="" className="img-fluid" width="300" height="300"/>
                 </div>

@@ -9,6 +9,9 @@ import {getAllCreatedGroup} from "../../action/userAction";
 
 class Header extends Component {
 
+  componentDidMount(){
+    this.props.getAllCreatedGroup();
+  }
   componentDidUpdate(){
     this.props.getAllCreatedGroup();
   }

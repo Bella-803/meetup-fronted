@@ -135,59 +135,47 @@ class MainAdminDashboardProfile extends Component {
             </div>
             
             <div id="layoutSidenav_content">
-                <main>
-                <div class="profile-container">
-
-                <div class="profile-image-container">
-                   <img src={myImage} width="300" height="300" class="img-fluid "/>
-                   <input type="file" name="file" onChange={this.onChange}/>
-                   <button onClick={this.onUploadClick}>Edit Profile</button>
-                </div>
-
-                <div class="profile-content-container">
-                   <div class="profile-content-title">
-                      <h1>Account</h1>
-                      <p>Edit your account settings and change your password</p>
+                       
+            <section id="profile">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-9 mt-5">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4>Your Account</h4>
                     </div>
-                    <div class="profile-content-email">
-                        <p>Your email is : <strong>{member.email}</strong></p>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="name">Fullname</label>
+                         <input type="text" class="form-control" value={member.fullname} />
+                        </div>
+                         <div class="form-group">
+                          <label for="email">Email</label>
+                         <input type="email" class="form-control" value={member.email} />
+                        </div>
+                        <div class="form-group">
+                        <label for="name">Username</label>
+                       <input type="text" class="form-control" value={member.username} />
+                      </div>
+                         
+                      </form>
                     </div>
-                    <div class="profile-content-form">
-                     <form>
-                       <div class="input-group mb-2">
-                         <div class="input-group-prepend">
-                           <span class="input-group-text">Full Name</span> 
-                         </div>
-                          <input id="fullname" name="fullname" class="form-control" />
-                       </div>
-
-                       <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-lock"></i></span> 
-                          </div>
-                          <input id="cuurrent-password" name="password" class="form-control" placeholder="Current Password"/>
-                       </div>
-
-                       <div class="input-group mb-2">
-                         <div class="input-group-prepend">
-                           <span class="input-group-text"><i class="fas fa-lock"></i></span> 
-                         </div>
-                         <input id="new-password" name="password" class="form-control" placeholder="New Password"/>
-                       </div>
-
-                       <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span> 
-                          </div>
-                         <input id="confirm-password" name="password" class="form-control" placeholder="Confirm Password"/>
-                       </div>
-
-                       <input type="submit" value="Edit" class="btn btn-primary px-5 py-2 mt-3 mb-4"/>
-                    </form>
                   </div>
-             </div>
+                </div>
+      
+                <div class="col-md-3 mt-3">
+                   <h3>Your Profile Picture</h3>
+                   <img src={myImage} alt="" class="img-fluid d-block mb-3" />
+                   <input type="file" name="file" onChange={this.onChange}/>
+                   <button class="btn btn-primary btn-block mt-2" onClick={this.onUploadClick}>Edit Image</button>
+                </div>
+              </div>
             </div>
-                </main>
+          </section>
+
+                 
+
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">

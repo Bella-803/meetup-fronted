@@ -15,9 +15,10 @@ export default function MeetupLinkInfo() {
                  <Modal.Title>Information about Google-Meet Link</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                 <p>You are reading content in modal</p>
+                 <p>Use Google-Meet to create an online meeting and the paste the link to the meeting in the field</p>
               </Modal.Body>
               <Modal.Footer>
+                 <a href="https://us04web.zoom.us/meeting/schedule" className="btn btn-info">Google Meet</a>
                  <Button variant="danger" onClick={handleClose}>Close</Button>
               </Modal.Footer>
            </Modal>
