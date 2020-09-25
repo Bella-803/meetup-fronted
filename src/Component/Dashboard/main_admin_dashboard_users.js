@@ -139,7 +139,7 @@ class MainAdminDashboardUsers extends Component {
                 </div>
             </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
+                        <div class="small">Logged in as: {this.props.security.user.fullname}</div>
                        Meetup System
                     </div>
                 </nav>
@@ -190,13 +190,7 @@ class MainAdminDashboardUsers extends Component {
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Meetup System 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                               { 
-                                   //<a href="#">Terms &amp; Conditions</a>
-                                }
-                            </div>
+                            
                         </div>
                     </div>
                 </footer>

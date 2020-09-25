@@ -25,6 +25,12 @@ class AddMeetingForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.errors) {
+            this.setState({errors: nextProps.errors})
+        }
+    }
+
     onChange(e) {
         this.setState({
             [e.target.name] : e.target.value
@@ -60,6 +66,7 @@ class AddMeetingForm extends Component {
 
     render() {
 
+        const {errors} = this.state;
         let location ;
         let linkInfo;
 
@@ -111,11 +118,18 @@ class AddMeetingForm extends Component {
                                           <input id="meetingTitle"
                                                  type="text"
                                                  placeholder="Enter Meeting Title" 
-                                                 className="form-control form-control-lg py-4"
+                                                 className={classnames("form-control form-control-lg py-4", {
+                                                     "is-invalid": errors.meetingTitle
+                                                 })}
                                                  name="meetingTitle"
                                                  value={this.state.meetingTitle}
                                                  onChange={this.onChange}
                                                  />
+                                                {errors.meetingTitle && (
+                                                    <div className="invalid-feedback">
+                                                        {errors.meetingTitle}
+                                                    </div>
+                                                )} 
                                             
                                       </div>
                                     
@@ -149,11 +163,18 @@ class AddMeetingForm extends Component {
                                         <div className="form-group">
                                            <label className="mb-1" for="dateAndTime">Date and Time</label>
                                            <input type="datetime-local" id="dateAndTime"
-                                                  className="form-control form-control-lg py-4"
+                                                  className={classnames("form-control form-control-lg py-4", {
+                                                      "is-invalid":errors.dateAndTime
+                                                  })}
                                                   name="dateAndTime"
                                                   value={this.state.dateAndTime}
                                                   onChange={this.onChange}
                                            />
+                                           {errors.dateAndTime && (
+                                               <div className="invalid-feedback">
+                                                  {errors.dateAndTime}
+                                               </div>
+                                           )}
                                         </div>
 
                               </div>

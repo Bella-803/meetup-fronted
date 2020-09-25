@@ -26,14 +26,14 @@ class MeetupUserView extends Component {
         let showAttendance = "";
         
         if(location.startsWith('https')){
-          locationInfo = <span className="font-weight-bold text-muted">, Online Meetup </span>
+          locationInfo = <span className="font-weight-bold text-muted">, <i className="fa fa-video" aria-hidden="true"></i> Online Meetup </span>
           attendMeetupBtn = <a href={meetup.location} target="_blank" className="text-success font-weight-bold"><i className="fa fa-video" aria-hidden="true"></i> Click to Join Online Meetup</a>
         }
         else {
           showAttendance =  <p className="lead text-danger mt-3">
                                  Attended by {meetup.numberOfAttendees}
                              </p>
-          locationInfo = ',' + meetup.location;
+          locationInfo = <span className="font-weight-bold text-muted">, <i className="fas fa-map-marker-alt"></i> {meetup.location} </span>;
           attendMeetupBtn =  <div>
                                  <Link onClick={this.attendMeet.bind(this, meetup.id)}> <i className="fa fa-plus-circle fa-2x text-primary mr-3"></i></Link>
                                   <Link onClick={this.cancelYourMeetup.bind(this, meetup.id)}> <i className="fa fa-times fa-2x text-danger"></i></Link>

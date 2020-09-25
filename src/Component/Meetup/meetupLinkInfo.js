@@ -18,7 +18,7 @@ export default function MeetupLinkInfo() {
                  <p>Use Google-Meet to create an online meeting and the paste the link to the meeting in the field</p>
               </Modal.Body>
               <Modal.Footer>
-                 <a href="https://meet.google.com/?hs=197&pli=1&authuser=0" className="btn btn-info">Google Meet</a>
+                 <a href="https://meet.google.com/?hs=197&pli=1&authuser=0" target="_blank" className="btn btn-info">Google Meet</a>
                  <Button variant="danger" onClick={handleClose}>Close</Button>
               </Modal.Footer>
            </Modal>
