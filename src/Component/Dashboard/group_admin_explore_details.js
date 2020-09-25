@@ -35,7 +35,7 @@ class GroupAdminExploreDetails extends Component {
                {
                  // <AddMeeting history={this.props.history} match={this.props.match} />
                 }
-                <Link to={`/addmeeting/${groupId}/${catId}`} variant="success">
+                <Link to={`/addmeeting/${groupId}/${catId}`} variant="success" className="btn btn-success mb-2">
                     <i className="fas fa-plus-circle"> New Meeting</i>
                 </Link>
                 <br />
