@@ -51,9 +51,15 @@ class Header extends Component {
         
         <div id="navbarCollapse" className="collapse navbar-collapse">
         <ul className="navbar-nav ml-auto">
+          <li className="nav-item mr-5">
+            <Link to="/home" className="nav-link text-info">
+              <i className="fas fa-user-circle mr-4">{user.fullname}</i>
+            </Link>
+          </li>
+
           <li className="nav-item">
             <Link to="/home" className="nav-link">
-              <i className="fas fa-user-circle mr-1">{user.fullname}</i>
+               Home
             </Link>
           </li>
   
@@ -91,20 +97,25 @@ class Header extends Component {
         
         <div id="navbarCollapse" className="collapse navbar-collapse">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link to="/home" className="nav-link">
+          <li className="nav-item mr-5">
+            <Link to="/home" className="nav-link text-info">
               <i className="fas fa-user-circle mr-1">{user.fullname}</i>
             </Link>
           </li>
 
-            <li className="nav-item dropdown mr-0">
-             <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups Created</a>
-            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-               {
-                 groupLinks
-                } 
-           </div>
+          <li className="nav-item">
+            <Link to="/home" className="nav-link">
+               Home
+            </Link>
+          </li>
 
+            <li className="nav-item dropdown mr-0">
+              <a className="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups Created</a>
+               <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                   {
+                     groupLinks
+                    } 
+                </div>
            </li>
 
            <li className="nav-item dropdown">

@@ -100,7 +100,7 @@ class CategoryItemUserView extends Component {
                       type="text"
                       name="searchText"
                       class="form-control"
-                      placeholder="Search Category"
+                      placeholder="Search Group"
                       onChange={this.onChange}
                     />
                     <div class="input-group-append">

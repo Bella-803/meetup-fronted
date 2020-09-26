@@ -67,6 +67,9 @@ class AddMeetingForm extends Component {
     render() {
 
         const {errors} = this.state;
+        const {groupId} = this.props.match.params;
+        const {catId} = this.props.match.params;
+
         let location ;
         let linkInfo;
 
@@ -105,7 +108,7 @@ class AddMeetingForm extends Component {
           <div class="row justify-content-center">
               <div class="col-lg-7">
                  <div className="mt-3">
-                   <Link > <i className="fa fa-arrow-left"></i> Back</Link>
+                   <Link to={`/groupadminexploredetails/${catId}/${groupId}`} > <i className="fa fa-arrow-left"></i> Back</Link>
 
                  </div>
                   <div class="card shadow-lg border-0 rounded-lg mt-3">

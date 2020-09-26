@@ -100,6 +100,7 @@ class GroupItemContentView extends Component {
       this.displaySuccessAlert();
         const {group} = this.props;
         const {meetups} = this.props.meetup;
+        meetups.reverse();
         const {members} = this.props.member;
        
 
